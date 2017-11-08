@@ -49,43 +49,48 @@ new Array( numCandidates ).fill( null ).forEach( ( el, i, arr ) => {
     candidates[ i ] = candidate;
 } );
 
-// Voting
-voters.forEach( function( voter ) {
-    // console.log( 'ASSEMBLING BALLOT FOR VOTER: ', voter.id );
+// Run
+runElection( election, candidates, voters );
 
-    let counter = 0;
-    let candidateIds = Object.keys( candidates );
-    let ballot = [];
+function runElection( election, candidates, voters ) {
+    // Voting
+    voters.forEach( function( voter ) {
+        // console.log( 'ASSEMBLING BALLOT FOR VOTER: ', voter.id );
 
-    while ( counter < candidateIds.length ) {
-        let candidateId = candidateIds[ Math.floor(  Math.random() * candidateIds.length ) ];
+        let counter = 0;
+        let candidateIds = Object.keys( candidates );
+        let ballot = [];
 
-        if ( ballot.indexOf( candidateId ) === -1 ) {
-            ballot.push( candidateId );
-            counter++;
+        while ( counter < candidateIds.length ) {
+            let candidateId = candidateIds[ Math.floor(  Math.random() * candidateIds.length ) ];
+
+            if ( ballot.indexOf( candidateId ) === -1 ) {
+                ballot.push( candidateId );
+                counter++;
+            }
         }
+
+        // console.log( 'BALLOT COMPLETE' );
+
+        // console.log( 'ATTACHING BALLOT TO CANDIDATE' );
+
+        candidates[ ballot[ 0 ] ].ballots.push( ballot );
+    } );
+
+    // Tallying
+    Object.keys( candidates ).forEach( ( k ) => {
+        // console.log( 'LOGGING OUT VOTES FOR CANDIDATE:', k );
+        // console.log( candidates[ k ].ballots.length );
+
+        if ( candidates[ k ].ballots.length > ( voters.length / 2 ) ) {
+            election.winner = candidates[ k ].id;
+        }
+    } );
+
+    // Declaring winner
+    if ( election.winner ) {
+        console.log( 'CANDIDATE WON:', election.winner );
+    } else {
+        console.log( 'NO WINNER' );
     }
-
-    // console.log( 'BALLOT COMPLETE' );
-
-    // console.log( 'ATTACHING BALLOT TO CANDIDATE' );
-
-    candidates[ ballot[ 0 ] ].ballots.push( ballot );
-} );
-
-// Tallying
-Object.keys( candidates ).forEach( ( k ) => {
-    // console.log( 'LOGGING OUT VOTES FOR CANDIDATE:', k );
-    // console.log( candidates[ k ].ballots.length );
-
-    if ( candidates[ k ].ballots.length > ( voters.length / 2 ) ) {
-        election.winner = candidates[ k ].id;
-    }
-} );
-
-// Declaring winner
-if ( election.winner ) {
-    console.log( 'CANDIDATE WON:', election.winner );
-} else {
-    console.log( 'NO WINNER' );
 }
