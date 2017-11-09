@@ -1,11 +1,14 @@
 {
   "name": "ranked-voting",
   "version": "0.0.0",
-  "description": "## Table of Contents - [About](#about) - [Premise](#premise) - [Notes](#notes)",
+  "description": "This repo includes tests and experiments that aim to give a better understanding of how the various styles/systems of ranked voting work.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jesse R Mykolyn",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "meow": "^3.7.0"
+  }
 }
