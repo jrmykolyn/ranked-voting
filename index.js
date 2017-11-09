@@ -20,6 +20,7 @@ const cli = meow();
 /**
  * Function prints arguments to stdout when process is running in `debug` mode.
  */
+/// TODO: Move into dedicated `utils` module.
 function debug() {
     if ( cli.flags.debug ) {
         console.log( ...( Array.prototype.slice.call( arguments, 0 ) ) );
