@@ -14,6 +14,7 @@ const { Election } = require( './lib' );
 // DECLARE VARS
 // --------------------------------------------------
 const cli = meow();
+const election = new Election();
 
 // --------------------------------------------------
 // DECLARE FUNCTIONS
@@ -31,4 +32,6 @@ function debug() {
 // --------------------------------------------------
 // INITIALIZATION
 // --------------------------------------------------
-Election.init();
+election.run()
+    .then( data => { console.log( data ); } )
+    .catch( err => { console.log( err.message ); } );
