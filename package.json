@@ -9,6 +9,7 @@
   "author": "Jesse R Mykolyn",
   "license": "ISC",
   "dependencies": {
-    "meow": "^3.7.0"
+    "meow": "^3.7.0",
+    "sfco-js-utils": "^0.1.0"
   }
 }
